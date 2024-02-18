@@ -1,4 +1,4 @@
 .env*
 .example.env
 deploy.sh
-scripts/*
+scripts
