@@ -43,7 +43,12 @@ curl -X POST "https://api.vercel.com/v13/deployments" -H "Authorization: Bearer 
       "type": "plain",
       "key": "VERCEL_URL",
       "value": "plugin.promptengineers.ai"
-    }
+    },
+    {
+      "type": "plain",
+      "key": "VERCEL_ENV",
+      "value": "production"
+    },
   ],
   "alias": ["plugin.promptengineers.ai"]
 }' | jq
