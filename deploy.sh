@@ -37,5 +37,18 @@ curl -X POST "https://api.vercel.com/v13/deployments" -H "Authorization: Bearer 
       "encoding": "base64",
       "data": "ewogICAgImJ1aWxkcyI6IFsKICAgICAgeyJzcmMiOiAiL3NlcnZlci9hcGkucHkiLCAidXNlIjogIkB2ZXJjZWwvcHl0aG9uIn0KICAgIF0sCiAgICAicm91dGVzIjogWwogICAgICB7InNyYyI6ICIvKC4qKSIsICJkZXN0IjogInNlcnZlci9hcGkucHkifQogICAgXQp9"
     }
-  ]
+  ],
+  "env": [
+    {
+      "type": "plain",
+      "key": "VERCEL_URL",
+      "value": "plugin.promptengineers.ai"
+    }
+  ],
+  "alias": ["plugin.promptengineers.ai"]
 }' | jq
+
+# curl -X POST "https://api.vercel.com/v9/now/deployments/{deploymentId}/aliases" \
+#      -H "Authorization: Bearer $VERCEL_TOKEN" \
+#      -H "Content-Type: application/json" \
+#      -d '{"alias":"your-custom-domain.com"}'
