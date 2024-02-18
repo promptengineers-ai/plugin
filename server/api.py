@@ -4,8 +4,11 @@ from fastapi.templating import Jinja2Templates
 from .config import PROTOCOL, VERCEL_URL
 
 TAG = "Plugin"
-app = FastAPI(servers=[{"url": f"{PROTOCOL}://{VERCEL_URL}"}])
 templates = Jinja2Templates(directory="static")
+app = FastAPI(servers=[{"url": f"{PROTOCOL}://{VERCEL_URL}"}],
+              title="Prompt Engineers - Plugin API",
+			  description="Returns simple data for testing purposes.",
+			  version="0.1.0")
 
 @app.get("/", tags=["Pages"], include_in_schema=False)
 async def home(request: Request):
