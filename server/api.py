@@ -4,23 +4,8 @@ from fastapi.templating import Jinja2Templates
 from .config import PROTOCOL, VERCEL_URL
 
 TAG = "Plugin"
-app = FastAPI()
+app = FastAPI(servers=[{"url": f"{PROTOCOL}://{VERCEL_URL}"}])
 templates = Jinja2Templates(directory="static")
-
-def custom_openapi():
-    if app.openapi_schema:
-        return app.openapi_schema
-    openapi_schema = app.openapi()
-    openapi_schema["servers"] = [
-        {"url": f"{PROTOCOL}://{VERCEL_URL}", "description": "Main server"},
-        # Add more servers here if needed
-    ]
-    app.openapi_schema = openapi_schema
-    return app.openapi_schema
-
-@app.on_event("startup")
-async def startup_event():
-    app.openapi_schema = custom_openapi()
 
 @app.get("/", tags=["Pages"], include_in_schema=False)
 async def home(request: Request):
